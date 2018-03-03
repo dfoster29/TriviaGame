@@ -67,3 +67,7 @@ $("#video-games").on("click", function () {
 $("#computers").on("click", function () {
   $("body").css("background-image", "url(./assets/images/computer.jpg)");
 });
+
+$("#reset-button").on("click", function () {
+  $("body").css("background-image", "url(./assets/images/trivia.jpg)");
+});
