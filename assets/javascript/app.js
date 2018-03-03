@@ -1,13 +1,18 @@
 //assinging variables so users can selected a desired category, difficulty, and # of questions
 
 // select either 10, 15, or 20 questions
-var questionNum = ;
+var questionNumArr = [10, 15, 20];
 
 // select easy, medium, or hard level of difficulty
-var questionDif = ;
+var questionDifArr = ["easy", "medium", "hard"];
 
 // select the topic of the questions
-var questionCat = ;
+// categoriess
+// video games = 15
+// music = 12
+// sports = 21
+// computers = 18
+var questionCatArr = [];
 
 // the url with the variables so it pulls the correct questions
 var queryURL = "https://opentdb.com/api.php?amount=" + questionNum + "&category=" + questionCat + "9&difficulty=" + questionDif + "&type=multiple";
