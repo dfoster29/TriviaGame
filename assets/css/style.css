@@ -9,6 +9,8 @@ body {
 .jumbotron {
   font-size: 75px;
   padding: 20px;
+  background-color: black;
+  color: white;
 }
 
 .answerBtn {
@@ -18,4 +20,13 @@ body {
 
 .question-timer {
   font-size: 75px;
+}
+
+body {
+  background-image: url("../images/trivia.jpg");
+}
+
+.card-header {
+  background-color: black;
+  color: white;
 }
