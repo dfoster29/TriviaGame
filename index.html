@@ -17,9 +17,7 @@
 <body>
 
   <div class="jumbotron text-center w-100">
-    <h1 class="">
-      Trivia!
-    </h1>
+    Trivia!
   </div>
 
 
@@ -28,80 +26,83 @@
       <div class="col-md-3">
         <div class="card mb-5" id="card-1">
           <div class="card-header text-center" id="card-head">
-            <h3>Player Stats</h3>
+            <h2>Options</h2>
           </div>
-          <div class="card-body">
-            <div class="card-text text-center">
-              <h5 class="row">
-                <p class="col-md-6">correct:</p>
-                <span class="col-md-6" id=wins>0</span>
-              </h5>
-              <h5 class="row">
-                <p class="col-md-6">incorrect:</p>
-                <span class="col-md-6" id=losses>0</span>
-              </h5>
+          <div class="card-body text-center">
+            <div class="card-text">
+              <h4>
+                Category
+              </h4>
               <div>
-                <button id="reset-button" class="btn-lg btn-danger my-2" onclick="resetGame()">Reset</button>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">Sports</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">Computers</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">Music</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class mb-3">Video Games</button>
+              </div>
+              <h4>
+                Difficulty
+              </h4>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">Easy</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">Medium</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class mb-3">Hard</button>
+              </div>
+              <h4>
+                Number of Questions
+              </h4>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">10</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class">15</button>
+              </div>
+              <div>
+                <button type="button" class="btn-sm btn-secondary my-1 letterBtn button-class mb-3">20</button>
+              </div>
+              <div>
+                <button id="game-button" class="btn-lg btn-success mb-2" onclick="newGame()">Start Game</button>
+              </div>
+              <div>
+                <button id="reset-button" class="btn-lg btn-danger" onclick="resetGame()">Restart</button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
 
       <div class="col-md-9">
-        <div class="card mb-5" id="card-1">
-          <div class="card-header text-center" id="card-head">
-            <h3>Options</h3>
-          </div>
-          <div class="card-body">
-            <div class="card-text text-center">
-              <h5 class="row">
-                <p class="col-md-6">Category</p>
-              </h5>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Sports</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Computers</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Music</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Video Games</button>
-              <h5 class="row">
-                <p class="col-md-6">Difficulty</p>
-              </h5>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Easy</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Medium</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">Hard</button>
-              <h5 class="row">
-                <p class="col-md-6">Number of Questions</p>
-              </h5>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">10</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">15</button>
-              <button type="button" class="btn-lg my-1 letterBtn button-class">20</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-12">
         <div class="card mb-5" id="card-2">
           <div class="card-header text-center" id="card-head">
-            <h2>Questions will go here</h2>
+            <h1>Questions</h1>
           </div>
-
           <div class="card-text text-center">
-
             <div class="my-3" id="answer-choices">
+              <h2 class="mb-5">This is where the questions will appear</h2>
               <div>
-                <button type="button" id="let-q" class="btn-lg my-1 letterBtn button-class">A. answer 1</button>
-                <button type="button" id="let-w" class="btn-lg my-1 letterBtn button-class">B. answer 2</button>
-                <button type="button" id="let-e" class="btn-lg my-1 letterBtn button-class">C. answer 3</button>
-                <button type="button" id="let-r" class="btn-lg my-1 letterBtn button-class">D. answer 4</button>
+                <button type="button" id="answer-A" class="btn-lg answerBtn button-class">A. answer 1</button>
+                <button type="button" id="answer-B" class="btn-lg answerBtn button-class">B. answer 2</button>
               </div>
-
+              <div>
+                <button type="button" id="answer-C" class="btn-lg answerBtn button-class">C. answer 3</button>
+                <button type="button" id="answer-D" class="btn-lg answerBtn button-class">D. answer 4</button>
+              </div>
             </div>
-
-
+            <h1 class="question-timer">30</h1>
             <div>
-              <button id="start-button" class="my-1 btn-lg btn-primary mb-4" onclick="newGame">Next Question</button>
+              <button id="start-button" class="my-1 btn-lg btn-primary mt-4 mb-4" onclick="newGame">Next Question</button>
             </div>
-
           </div>
         </div>
       </div>

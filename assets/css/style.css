@@ -1,0 +1,21 @@
+.btn-sm {
+  width: 150px;
+}
+
+body {
+  background-color: black;
+}
+
+.jumbotron {
+  font-size: 75px;
+  padding: 20px;
+}
+
+.answerBtn {
+  width: 350px;
+  margin: 10px;
+}
+
+.question-timer {
+  font-size: 75px;
+}
