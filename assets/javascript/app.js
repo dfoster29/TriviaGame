@@ -1,4 +1,18 @@
-var queryURL = "https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple";
+//assinging variables so users can selected a desired category, difficulty, and # of questions
+
+// select either 10, 15, or 20 questions
+var questionNum = ;
+
+// select easy, medium, or hard level of difficulty
+var questionDif = ;
+
+// select the topic of the questions
+var questionCat = ;
+
+// the url with the variables so it pulls the correct questions
+var queryURL = "https://opentdb.com/api.php?amount=" + questionNum + "&category=" + questionCat + "9&difficulty=" + questionDif + "&type=multiple";
+
+
 
 $.ajax({
   url: queryURL,
@@ -12,19 +26,10 @@ $.ajax({
 
 
 
-
-
-
-
-for (i = 0; i < pickedWordArray.length; i++) {
-  // if guessedLetter === arr[i]
-  if (letterGuessed === pickedWordArray[i]) {
-    // replace placeholder[i] with guessedLetter
-    pickedWordPlaceholder[i] = letterGuessed;
-    // console.log(pickedWordPlaceholder);
     button.classList.add("btn-success");
-  }
-}
+
+
+
 
 function resetButtons() {
   var letterButtons = document.getElementsByClassName("button-class");
