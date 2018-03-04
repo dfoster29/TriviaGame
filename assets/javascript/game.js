@@ -52,28 +52,54 @@ function triviaGame() {
   }).then(function(response) {
     resultsArr = response.results;
     console.log(response);
-  });
 
-  function questionWrite() {
     for (var i = 0; i < resultsArr.length; i++) {
       $("#question").html(resultsArr[i].question);
+      $("#answer-A").html(resultsArr[i].correct_answer);
+      $("#answer-B").html(resultsArr[i].incorrect_answers[0]);
+      $("#answer-C").html(resultsArr[i].incorrect_answers[1]);
+      $("#answer-D").html(resultsArr[i].incorrect_answers[2]);
     }
-  };
+  });
+}
 
-};
+//triviaGame();
+$("#answer-A").click(function() {
+  $("#answer-A").addClass("btn-success")
+  stop();
+  $("#question-timer").html("<h1>" + "correct!" + "</h1>");
+});
+
+$("#answer-B").click(function() {
+  $("#answer-B").addClass("btn-danger")
+  stop();
+  $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
+});
+
+$("#answer-C").click(function() {
+  $("#answer-C").addClass("btn-danger")
+  stop();
+  $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
+});
+
+$("#answer-D").click(function() {
+  $("#answer-D").addClass("btn-danger")
+  stop();
+  $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
+});
 
 
-triviaGame();
-// button.classList.add("btn-success");
 
-// function resetButtons() {
-//   var letterButtons = $(".button-class");
-//   //console.log("hit");
-//   for (var i = 0; i < letterButtons.length; i++) {
-//     letterButtons[i].classList.remove("btn-success");
-//     letterButtons[i].classList.remove("btn-danger");
-//   }
-// }
+
+
+function resetButtons() {
+  var answerButtons = $(".answerBtn");
+  //console.log("hit");
+  for (var i = 0; i < answerButtons.length; i++) {
+    answerButtons[i].classList.remove("btn-success");
+    answerButtons[i].classList.remove("btn-danger");
+  }
+}
 
 function pickGame() {
   $("#sports").on("click", function() {
@@ -105,6 +131,11 @@ pickGame();
 
 var number = 30;
 
+function nextQuestion() {
+  run();
+  triviaGame();
+  resetButtons();
+}
 //  Variable that will hold our interval ID when we execute
 //  the "run" function
 var intervalId;
@@ -113,8 +144,8 @@ var intervalId;
 $("#stop").on("click", stop);
 
 //  When the resume button gets clicked, execute the run function.
-$("#start-button").on("click", run);
-$("#next-question").on("click", run, questionWrite);
+$("#start-button").on("click", nextQuestion);
+$("#next-question").on("click", nextQuestion);
 $("#reset-button").on("click", stop);
 
 //  The run function sets an interval
