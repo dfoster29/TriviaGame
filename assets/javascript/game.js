@@ -37,13 +37,14 @@
 // var quesTen = 10;
 // var quesFifteen = 15;
 // var quesTwenty = 20;
-var triviaQuestion = "";
-var correctAnswer = "";
-var incorrectAnswers = [];
-var resultsArr = [];
-var response = "";
+var triviaQuestion;
+var correctAnswer;
+var incorrectAnswers;
+var resultsArr;
+var response;
+var results;
 
-function triviaGame() {
+function getAPI() {
   var queryURL = "https://opentdb.com/api.php?amount=20&type=multiple";
 
   $.ajax({
@@ -52,45 +53,57 @@ function triviaGame() {
   }).then(function(response) {
     resultsArr = response.results;
     console.log(response);
-
-    for (var i = 0; i < resultsArr.length; i++) {
-      $("#question").html(resultsArr[i].question);
-      $("#answer-A").html(resultsArr[i].correct_answer);
-      $("#answer-B").html(resultsArr[i].incorrect_answers[0]);
-      $("#answer-C").html(resultsArr[i].incorrect_answers[1]);
-      $("#answer-D").html(resultsArr[i].incorrect_answers[2]);
-    }
   });
 }
 
+
+
+getAPI();
+
+function triviaGame() {
+
+  for (var i = 0; i < resultsArr.length; i++) {
+    console.log(resultsArr);
+
+    $("#question").html(resultsArr[i].question);
+
+    $("#answer-A").html(resultsArr[i].correct_answer);
+    $("#answer-B").html(resultsArr[i].incorrect_answers[0]);
+    $("#answer-C").html(resultsArr[i].incorrect_answers[1]);
+    $("#answer-D").html(resultsArr[i].incorrect_answers[2]);
+
+  }
+};
+
+
+
 //triviaGame();
 $("#answer-A").click(function() {
-  $("#answer-A").addClass("btn-success")
+  $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "correct!" + "</h1>");
 });
 
 $("#answer-B").click(function() {
-  $("#answer-B").addClass("btn-danger")
+  $("#answer-B").addClass("btn-danger");
+  $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
 
 $("#answer-C").click(function() {
-  $("#answer-C").addClass("btn-danger")
+  $("#answer-C").addClass("btn-danger");
+  $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
 
 $("#answer-D").click(function() {
-  $("#answer-D").addClass("btn-danger")
+  $("#answer-D").addClass("btn-danger");
+  $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
-
-
-
-
 
 function resetButtons() {
   var answerButtons = $(".answerBtn");
@@ -136,6 +149,12 @@ function nextQuestion() {
   triviaGame();
   resetButtons();
 }
+
+// function restartGame() {
+//   triviaGame();
+//   resetButtons();
+//   stop();
+// }
 //  Variable that will hold our interval ID when we execute
 //  the "run" function
 var intervalId;
@@ -145,8 +164,10 @@ $("#stop").on("click", stop);
 
 //  When the resume button gets clicked, execute the run function.
 $("#start-button").on("click", nextQuestion);
+
 $("#next-question").on("click", nextQuestion);
-$("#reset-button").on("click", stop);
+
+// $("#reset-button").on("click", restartGame);
 
 //  The run function sets an interval
 //  that runs the decrement function once a second.
@@ -170,6 +191,7 @@ function decrement() {
   //  Once number hits zero...
   if (number === 0) {
     $("#question-timer").html("<h1>" + "time's up!" + "</h1>");
+    $("#answer-A").addClass("btn-success");
     //  ...run the stop function.
     stop();
   }
