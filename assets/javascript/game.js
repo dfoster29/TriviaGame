@@ -42,38 +42,26 @@ var correctAnswer;
 var incorrectAnswers;
 var resultsArr;
 var response;
-var results;
 
-function getAPI() {
+function triviaGame() {
   var queryURL = "https://opentdb.com/api.php?amount=20&type=multiple";
 
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    resultsArr = response.results;
-    console.log(response);
-  });
-}
+    resultsArr = response.results
+    console.log(response)
+    });
 
-
-
-getAPI();
-
-function triviaGame() {
 
   for (var i = 0; i < resultsArr.length; i++) {
-    console.log(resultsArr);
-
     $("#question").html(resultsArr[i].question);
-
     $("#answer-A").html(resultsArr[i].correct_answer);
     $("#answer-B").html(resultsArr[i].incorrect_answers[0]);
     $("#answer-C").html(resultsArr[i].incorrect_answers[1]);
     $("#answer-D").html(resultsArr[i].incorrect_answers[2]);
-
-  }
-};
+  }};
 
 
 
@@ -105,14 +93,18 @@ $("#answer-D").click(function() {
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
 
+
+
+
+
 function resetButtons() {
   var answerButtons = $(".answerBtn");
   //console.log("hit");
   for (var i = 0; i < answerButtons.length; i++) {
     answerButtons[i].classList.remove("btn-success");
     answerButtons[i].classList.remove("btn-danger");
-  }
-}
+  };
+};
 
 function pickGame() {
   $("#sports").on("click", function() {
@@ -138,7 +130,7 @@ function pickGame() {
   $("#reset-button").on("click", function() {
     $("body").css("background-image", "url(./assets/images/trivia.jpg)");
   });
-}
+};
 
 pickGame();
 
@@ -148,7 +140,7 @@ function nextQuestion() {
   run();
   triviaGame();
   resetButtons();
-}
+};
 
 // function restartGame() {
 //   triviaGame();
@@ -178,7 +170,7 @@ function run() {
   intervalId = setInterval(decrement, 1000);
   number = 30;
   $("#question-timer").html("<h1>" + 30 + "</h1>");
-}
+};
 
 //  The decrement function.
 function decrement() {
@@ -195,7 +187,7 @@ function decrement() {
     //  ...run the stop function.
     stop();
   }
-}
+};
 
 //  The stop function
 function stop() {
@@ -203,4 +195,4 @@ function stop() {
   //  We just pass the name of the interval
   //  to the clearInterval function.
   clearInterval(intervalId);
-}
+};
