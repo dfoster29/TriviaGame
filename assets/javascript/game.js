@@ -40,6 +40,7 @@
 var triviaQuestion;
 var correctAnswer;
 var incorrectAnswers;
+var questionCount = 0;
 var resultsArr;
 var response;
 
@@ -49,44 +50,46 @@ function triviaGame() {
   $.ajax({
     url: queryURL,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     resultsArr = response.results
     console.log(response)
-    });
 
+    printQuestion()
+  });
+};
 
-  for (var i = 0; i < resultsArr.length; i++) {
-    $("#question").html(resultsArr[i].question);
-    $("#answer-A").html(resultsArr[i].correct_answer);
-    $("#answer-B").html(resultsArr[i].incorrect_answers[0]);
-    $("#answer-C").html(resultsArr[i].incorrect_answers[1]);
-    $("#answer-D").html(resultsArr[i].incorrect_answers[2]);
-  }};
-
+function printQuestion() {
+  $("#question").html(resultsArr[questionCount].question);
+  $("#answer-A").html(resultsArr[questionCount].correct_answer);
+  $("#answer-B").html(resultsArr[questionCount].incorrect_answers[0]);
+  $("#answer-C").html(resultsArr[questionCount].incorrect_answers[1]);
+  $("#answer-D").html(resultsArr[questionCount].incorrect_answers[2]);
+  run();
+}
 
 
 //triviaGame();
-$("#answer-A").click(function() {
+$("#answer-A").click(function () {
   $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "correct!" + "</h1>");
 });
 
-$("#answer-B").click(function() {
+$("#answer-B").click(function () {
   $("#answer-B").addClass("btn-danger");
   $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
 
-$("#answer-C").click(function() {
+$("#answer-C").click(function () {
   $("#answer-C").addClass("btn-danger");
   $("#answer-A").addClass("btn-success");
   stop();
   $("#question-timer").html("<h1>" + "incorrect!" + "</h1>");
 });
 
-$("#answer-D").click(function() {
+$("#answer-D").click(function () {
   $("#answer-D").addClass("btn-danger");
   $("#answer-A").addClass("btn-success");
   stop();
@@ -107,27 +110,27 @@ function resetButtons() {
 };
 
 function pickGame() {
-  $("#sports").on("click", function() {
+  $("#sports").on("click", function () {
     $("body").css("backgroundImage", "url(./assets/images/sports.jpg)");
     questionCat = 21;
   });
 
-  $("#music").on("click", function() {
+  $("#music").on("click", function () {
     $("body").css("background-image", "url(./assets/images/music.jpg)");
     questionCat = 12;
   });
 
-  $("#video-games").on("click", function() {
+  $("#video-games").on("click", function () {
     $("body").css("background-image", "url(./assets/images/videogames.jpg)");
     questionCat = 15;
   });
 
-  $("#computers").on("click", function() {
+  $("#computers").on("click", function () {
     $("body").css("background-image", "url(./assets/images/computer.jpg)");
     questionCat = 18;
   });
 
-  $("#reset-button").on("click", function() {
+  $("#reset-button").on("click", function () {
     $("body").css("background-image", "url(./assets/images/trivia.jpg)");
   });
 };
@@ -138,7 +141,8 @@ var number = 30;
 
 function nextQuestion() {
   run();
-  triviaGame();
+  questionCount++;
+  printQuestion();
   resetButtons();
 };
 
@@ -155,7 +159,7 @@ var intervalId;
 $("#stop").on("click", stop);
 
 //  When the resume button gets clicked, execute the run function.
-$("#start-button").on("click", nextQuestion);
+$("#start-button").on("click", triviaGame);
 
 $("#next-question").on("click", nextQuestion);
 
